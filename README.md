@@ -147,7 +147,7 @@ The application follows a modular architecture:
 
 ```
 app/
-├── app.py                  # Flask application and routes
+├── app.py                  # FastAPI application and routes
 ├── models.py               # Data models (Content, Journey)
 ├── journey_planner.py      # Journey planning logic
 ├── scrapers/

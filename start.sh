@@ -39,7 +39,9 @@ check_python() {
     fi
     
     version=$(python3 --version | cut -d' ' -f2 | cut -d'.' -f1,2)
-    if (( $(echo "$version < 3.10" | bc -l) )); then
+    major=$(echo "$version" | cut -d'.' -f1)
+    minor=$(echo "$version" | cut -d'.' -f2)
+    if [ "$major" -lt 3 ] || { [ "$major" -eq 3 ] && [ "$minor" -lt 10 ]; }; then
         print_message "$RED" "Python 3.10 or higher is required. Current version: $version"
         exit 1
     fi
