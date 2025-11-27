@@ -13,7 +13,14 @@ class JourneyPlanner:
         """Initialize the journey planner."""
         self.wiki_scraper = WikipediaScraper()
         self.rt_scraper = RottenTomatoesScraper()
-        self.vector_store = VectorStore()
+        self._vector_store = None
+    
+    @property
+    def vector_store(self):
+        """Lazy initialization of vector store."""
+        if self._vector_store is None:
+            self._vector_store = VectorStore()
+        return self._vector_store
     
     def search_content(self, query: str, limit: int = 10) -> List[Content]:
         """Search for content matching the query."""

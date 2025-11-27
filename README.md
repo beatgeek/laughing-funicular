@@ -14,7 +14,10 @@ A Python web application that helps you plan your perfect viewing journey, just 
 
 ## Technology Stack
 
-- **Backend**: Flask (Python web framework)
+- **Backend**: FastAPI (Modern Python web framework)
+- **Server**: Uvicorn (ASGI server)
+- **Package Manager**: uv (Fast Python package installer)
+- **Container**: Docker & Docker Compose
 - **Data Sources**: Wikipedia API, web scraping (Rotten Tomatoes concept)
 - **Semantic Search**: Qdrant vector database with sentence-transformers
 - **Frontend**: HTML, CSS, JavaScript (vanilla)
@@ -24,10 +27,10 @@ A Python web application that helps you plan your perfect viewing journey, just 
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- pip package manager
+- Docker and Docker Compose (recommended)
+- OR Python 3.10 or higher with uv
 
-### Setup
+### Quick Start with Docker (Recommended)
 
 1. Clone the repository:
 ```bash
@@ -35,15 +38,29 @@ git clone https://github.com/beatgeek/laughing-funicular.git
 cd laughing-funicular
 ```
 
-2. Create a virtual environment (recommended):
+2. Build and run with Docker Compose:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+docker-compose up --build
 ```
 
-3. Install dependencies:
+The application will be available at `http://localhost:8000`
+
+### Alternative: Local Development Setup
+
+1. Clone the repository:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/beatgeek/laughing-funicular.git
+cd laughing-funicular
+```
+
+2. Install uv (if not already installed):
+```bash
+pip install uv
+```
+
+3. Install dependencies using uv:
+```bash
+uv pip install -e .
 ```
 
 4. Set up environment variables (optional):
@@ -54,14 +71,31 @@ cp .env.example .env
 
 ## Usage
 
-### Running Locally
+### Running with Docker
+
+Start the application:
+```bash
+docker-compose up
+```
+
+Stop the application:
+```bash
+docker-compose down
+```
+
+### Running Locally (Development)
 
 Start the application:
 ```bash
 python run.py
 ```
 
-The application will be available at `http://localhost:5000`
+Or with uvicorn directly:
+```bash
+uvicorn app.app:app --reload --host 0.0.0.0 --port 8000
+```
+
+The application will be available at `http://localhost:8000`
 
 ### Using the Application
 
@@ -73,7 +107,12 @@ The application will be available at `http://localhost:5000`
 
 ### API Endpoints
 
-The application provides RESTful API endpoints:
+The application provides RESTful API endpoints. You can also explore the interactive API documentation:
+
+- **Swagger UI**: `http://localhost:8000/docs`
+- **ReDoc**: `http://localhost:8000/redoc`
+
+Available endpoints:
 
 - `POST /api/plan-journey`: Create a viewing journey
   ```json
@@ -99,6 +138,8 @@ The application provides RESTful API endpoints:
     "limit": 10
   }
   ```
+
+- `GET /health`: Health check endpoint
 
 ## Architecture
 
@@ -148,21 +189,44 @@ app/
 
 ## Development
 
+### Docker Development
+
+For development with hot-reload:
+```bash
+docker-compose up
+```
+
+The application code is mounted as a volume, so changes are reflected automatically.
+
 ### Running Tests
 
 (Tests to be implemented)
 
 ```bash
-python -m pytest
+pytest
+```
+
+### Building Docker Image
+
+Build the image manually:
+```bash
+docker build -t content-journey-finder .
+```
+
+Run the container:
+```bash
+docker run -p 8000:8000 content-journey-finder
 ```
 
 ### Code Structure
 
 The codebase follows Python best practices:
 - Type hints for better code clarity
+- Pydantic models for request/response validation
 - Dataclasses for clean data models
 - Modular design with separation of concerns
-- RESTful API design
+- RESTful API design with FastAPI
+- Async/await support for better performance
 
 ## Contributing
 

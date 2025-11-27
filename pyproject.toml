@@ -1,0 +1,35 @@
+[project]
+name = "content-journey-finder"
+version = "0.1.0"
+description = "A travel finder style application for discovering movies and TV shows"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MPL-2.0" }
+authors = [
+    { name = "Content Journey Finder Team" }
+]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.2",
+    "wikipedia>=1.4.0",
+    "qdrant-client>=1.7.0",
+    "sentence-transformers>=3.0.0",
+    "lxml>=4.9.3",
+    "python-dotenv>=1.0.0",
+    "jinja2>=3.1.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "httpx>=0.25.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []
