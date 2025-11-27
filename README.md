@@ -236,11 +236,38 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](LICENSE) file for details.
 
+## Quick Start Script
+
+We've included a convenient startup script:
+
+```bash
+./start.sh              # Start with Docker
+./start.sh docker-build # Rebuild and start with Docker
+./start.sh local        # Start locally without Docker
+./start.sh help         # Show all options
+```
+
+## Additional Documentation
+
+- **[Docker Deployment Guide](DOCKER.md)**: Comprehensive Docker setup, deployment, and troubleshooting
+- **API Documentation**: Available at `http://localhost:8000/docs` (Swagger UI) when running
+- **Alternative API Docs**: Available at `http://localhost:8000/redoc` (ReDoc)
+
+## API Features
+
+The FastAPI application provides:
+- **Automatic API documentation** (OpenAPI/Swagger)
+- **Request validation** with Pydantic models
+- **Async/await support** for better performance
+- **Type hints** throughout the codebase
+- **Health check endpoint** for monitoring
+
 ## Acknowledgments
 
 - Wikipedia for providing rich content data
 - Qdrant for vector database technology
 - Sentence Transformers for text embeddings
+- FastAPI for the modern web framework
 - The open-source community
 
 ## Disclaimer
