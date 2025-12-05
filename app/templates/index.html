@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Journey Finder - Find Your Perfect Watch List</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Content Journey Finder</h1>
+            <p class="tagline">Plan your perfect viewing journey, just like booking a flight</p>
+        </header>
+
+        <main>
+            <div class="search-section card">
+                <h2>Plan Your Journey</h2>
+                
+                <div class="form-group">
+                    <label for="duration">Journey Duration (minutes)</label>
+                    <input type="number" id="duration" value="180" min="30" max="1440" step="30">
+                    <span class="helper-text">How long is your flight/journey?</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferences">What would you like to watch?</label>
+                    <input type="text" id="preferences" placeholder="e.g., action movies, sci-fi, comedy shows">
+                    <span class="helper-text">Enter genres, themes, or specific titles</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="content-type">Content Type</label>
+                    <select id="content-type">
+                        <option value="">Any</option>
+                        <option value="movie">Movies Only</option>
+                        <option value="show">TV Shows Only</option>
+                    </select>
+                </div>
+
+                <button id="plan-journey-btn" class="btn btn-primary">
+                    ✈️ Plan My Journey
+                </button>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Planning your perfect journey...</p>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <div class="journey-summary card">
+                    <h2>Your Content Journey</h2>
+                    <div id="journey-info" class="journey-info"></div>
+                </div>
+
+                <div class="itinerary">
+                    <h3>Journey Itinerary</h3>
+                    <div id="content-list" class="content-list"></div>
+                </div>
+            </div>
+
+            <div id="error" class="error-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Content Journey Finder - Built with FastAPI, Wikipedia, and Semantic Search</p>
+            <p class="disclaimer">Note: This is a demonstration application. Ratings are simulated.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
